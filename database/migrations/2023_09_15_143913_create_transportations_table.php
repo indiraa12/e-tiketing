@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bandara', function (Blueprint $table) {
+        Schema::create('transportations', function (Blueprint $table) {
             $table->id();
-            $table->string('kode');
             $table->foreignId('type_id')->constrained('types')->onDelete('cascade');
-            $table->string('jumlah_kursi');
-            $table->string('keterangan');
+            $table->string('kode');
+            $table->integer('jumlah_kursi');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bandara');
+        Schema::dropIfExists('transportations');
     }
 };

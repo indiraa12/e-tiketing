@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TransportationController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -43,7 +44,6 @@ Route::post("/dashboard", [HomeController::class, "search"]);
 Route::resource("/admin/pengguna", PenggunaController::class);
 
 Route::resource("/admin/type", TypeController::class);
-Route::resource("/admin/bandara", BandaraController::class);
-Route::resource("/admin/rute", RuteController::class);
+Route::resource("/admin/transportations", TransportationController::class);
 
 Route::resource("/pemesanan", PesananController::class);

@@ -78,7 +78,7 @@ class PenggunaController extends Controller
      */
     public function show(User $pengguna)
     {
-        return view("admin.pengguna.edit", compact("pengguna"));
+        // return view("admin.pengguna.edit", compact("pengguna"));
     }
 
     /**
