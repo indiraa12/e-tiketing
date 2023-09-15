@@ -18,7 +18,7 @@ class TypeController extends Controller
             $type = Type::where("nama_type", "LIKE", "%" . $request->cari . "%")
                 ->get();
         } else {
-            return $type = Type::all();
+            $type = Type::all();
         }
         return view('admin/type/index', compact('type'));
     }

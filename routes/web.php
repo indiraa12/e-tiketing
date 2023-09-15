@@ -24,19 +24,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/', function () {
     return view('beranda');
 });
 
-Route::get("/login", [LoginController::class, "index"])->name('login');
-Route::post("/login", [LoginController::class, "authenticate"]);
-
-Route::get("/register", [RegisterController::class, "register"]);
-Route::post("/register", [RegisterController::class, "store"]);
-
-Route::post("/logout", [LoginController::class, "logout"])->middleware("auth");
+Route::middleware('auth')->group(function() {
+Route::post("/logout", [LoginController::class, "logout"]);
 
 Route::get("/dashboard", [HomeController::class, "index"]);
 Route::post("/dashboard", [HomeController::class, "search"]);
@@ -45,5 +37,12 @@ Route::resource("/admin/pengguna", PenggunaController::class);
 
 Route::resource("/admin/type", TypeController::class);
 Route::resource("/admin/transportations", TransportationController::class);
+});
 
-Route::resource("/pemesanan", PesananController::class);
+Route::middleware('guest')->group(function () {
+    Route::get("/login", [LoginController::class, "index"])->name('login');
+    Route::post("/login", [LoginController::class, "authenticate"]);
+
+    Route::get("/register", [RegisterController::class, "register"]);
+    Route::post("/register", [RegisterController::class, "store"]);
+});

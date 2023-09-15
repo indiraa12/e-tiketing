@@ -12,8 +12,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $rute = Rute::all();
-        return view('dashboard/home', compact('rute'));
+        // $rute = Rute::all();
+        return view('dashboard/home');
     }
 
     public function search(Request $request)

@@ -6,7 +6,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title" align="center">Edit Type Transportasi</h4>
+                            <h4 class="card-title" align="center">Edit Type Transportasi | {{ $type->full_name }}</h4>
                             <form method="POST" action="{{ route('type.update', $type->id) }}">
                                 @method('put')
                                 @csrf
@@ -34,10 +34,9 @@
                                     </div>
                                 </div>
 
-
-
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="submit" class="btn btn-primary mr-2">UPDATE</button>
+                                    <a href="{{ route('type.index') }}" class="btn btn-secondary btn-sm mr-2">Cancel</a>
+                                    <button type="submit" class="btn btn-warning btn-sm mr-2">Edit</button>
                                 </div>
                             </form>
                         </div>

@@ -21,7 +21,7 @@ class TypeSeeder extends Seeder
                 'keterangan' => 'Economy',
             ],
             [
-                'nama_type' => 'Kereta Api',
+                'nama_type' => 'Kereta',
                 'keterangan' => 'Economy',
             ],
         ];

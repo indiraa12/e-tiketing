@@ -57,7 +57,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->kode }}</td>
-                                            <td>{{ $item->type->nama_type }}</td>
+                                            <td class="text-capitalize">{{ $item->type->full_name }}</td>
                                             <td>{{ $item->jumlah_kursi }}</td>
                                             <td>{{ $item->keterangan ?? '-' }}</td>
                                             <td>
