@@ -10,24 +10,27 @@
               <form method="POST" action="{{ route('type.update', $type->id) }}">
                 @method('put')
                 @csrf
+
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="basic-default-company">Nama Transportasi</label>
+                  <label class="col-sm-2 col-form-label" for="nama_type">Tipe Transportasi</label>
+                  <div class='col-sm-10'>
+                      <select name="nama_type" value="{{ $type->nama_type }}" class="form-control" required>
+                          <option value="" disabled selected>Pilih Disini</option>
+                          <option value="Pesawat">Pesawat</option>
+                          <option value="Kereta">Kereta</option>
+                      </select>
+                  </div>
+              </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-company">Keterangan</label>
                     <div class="col-sm-10">
-                        <input type="text" name="nama_type"  value="{{ $type->nama_type }}" class="form-control" id="basic-default-company"
-                            placeholder="Masukkan nama_type" />
+                        <input type="text" name="keterangan"  value="{{ $type->keterangan }}" class="form-control" id="basic-default-company"
+                            placeholder="Masukkan keterangan" />
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="keterangan">Keterangan</label>
-                    <div class='col-sm-10'>
-                        <select name="keterangan" value="{{ $type->keterangan }}" class="form-control" required>
-                            <option value="" disabled selected>Pilih Disini</option>
-                            <option value="Pesawat">Pesawat</option>
-                            <option value="Kereta">Kereta</option>
-                        </select>
-                    </div>
-                </div>
+                
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button type="submit" class="btn btn-primary mr-2">UPDATE</button>

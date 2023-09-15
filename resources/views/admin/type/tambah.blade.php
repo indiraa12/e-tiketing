@@ -6,27 +6,26 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title" align="center" >Tambah Type Transportasi</h4>
+              <h4 class="card-title" align="center" >Tambah Tipe Transportasi</h4>
               <form method="POST" action="{{ route('type.store') }}">
                 @csrf
                 
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="basic-default-company">Nama Transportasi</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="nama_type" class="form-control" id="basic-default-company"
-                            placeholder="Masukkan nama_type" />
-                    </div>
-                </div>
-              
-               
+                  <label class="col-sm-2 col-form-label" for="nama_type">Tipe Transportasi</label>
+                  <div class='col-sm-10'>
+                      <select name="nama_type" class="form-control" required>
+                          <option value="" disabled selected>Pilih Disini</option>
+                          <option value="Pesawat">Pesawat</option>
+                          <option value="Kereta">Kereta</option>
+                      </select>
+                  </div>
+              </div>
+
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="keterangan">Keterangan</label>
-                    <div class='col-sm-10'>
-                        <select name="keterangan" class="form-control" required>
-                            <option value="" disabled selected>Pilih Disini</option>
-                            <option value="Pesawat">Pesawat</option>
-                            <option value="Kereta">Kereta</option>
-                        </select>
+                    <label class="col-sm-2 col-form-label" for="basic-default-company">Keterangan</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="keterangan" class="form-control" id="basic-default-company"
+                            placeholder="Masukkan Kelas Transportasi" />
                     </div>
                 </div>
 

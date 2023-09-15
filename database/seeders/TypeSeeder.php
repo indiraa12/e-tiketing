@@ -18,11 +18,11 @@ class TypeSeeder extends Seeder
         $type = [
             [
                 'nama_type' => 'Pesawat',
-                'keterangan' => 'Kelas Economy',
+                'keterangan' => 'Economy',
             ],
             [
                 'nama_type' => 'Kereta Api',
-                'keterangan' => 'Kelas Economy',
+                'keterangan' => 'Economy',
             ],
         ];
         foreach ($type as $value) {

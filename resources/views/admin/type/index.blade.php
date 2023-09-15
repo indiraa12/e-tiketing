@@ -24,7 +24,7 @@
                 {{ session('hapus') }}
             </div>
         @endif
-            <a href="{{ route('type.create') }}" class="btn btn-primary">Tambah Type</a>
+            <a href="{{ route('type.create') }}" class="btn btn-primary">Tambah Tipe </a>
             <div class="mb-3"></div>
 
             <div class="row">
@@ -43,8 +43,8 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Nama Transportasi</th>
-                    <th>Keterangan</th>
+                    <th>Tipe Transportasi</th>
+                    <th>Kelas</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
