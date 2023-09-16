@@ -30,8 +30,8 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function() {
 Route::post("/logout", [LoginController::class, "logout"]);
 
-Route::get("/dashboard", [HomeController::class, "index"]);
-Route::post("/dashboard", [HomeController::class, "search"]);
+Route::get("/dashboard", [HomeController::class, "index"])->name('dashboard');
+// Route::post("/dashboard", [HomeController::class, "search"]);
 
 Route::resource("/admin/pengguna", PenggunaController::class);
 

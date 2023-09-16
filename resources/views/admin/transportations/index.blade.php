@@ -6,7 +6,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title" align="center">Data Transportasi</h4>
+                            <h4 class="card-title text-center">Data Transportasi</h4>
                             @if (session()->has('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('success') }}

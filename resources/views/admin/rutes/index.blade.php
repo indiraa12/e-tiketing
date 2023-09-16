@@ -6,7 +6,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Rute Perjalanan</h4>
+                            <h4 class="card-title text-center">Rute Perjalanan</h4>
                             @if (session()->has('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('success') }}
@@ -48,8 +48,8 @@
                                             <th>Tujuan</th>
                                             <th>Rute Awal</th>
                                             <th>Rute Ahir</th>
-                                            <th>Harga</th>
                                             <th>Kode Transportasi</th>
+                                            <th>Harga</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -60,8 +60,8 @@
                                             <td>{{ $item['tujuan'] }}</td>
                                             <td>{{ $item['rute_awal'] }}</td>
                                             <td>{{ $item['rute_akhir'] }}</td>
-                                            <td>{{ $item['harga'] }}</td>
                                             <td>{{ $item->transportation->format_kode }}</td>
+                                            <td>{{ $item['harga'] }}</td>
                                             <td>
                                                 <div class="d-inline-flex">
                                                     <a style="scale: .9" href="{{ route('rutes.edit', $item->id) }}"
