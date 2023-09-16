@@ -151,10 +151,12 @@
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Stasiun & Bandara</h4>
-                            <hr>
-                            {{-- <p class="card-description">
-                                Add class <code>.table-striped</code>
-                            </p> --}}
+                            <hr class="hr" />
+                            <p class="card-description">
+                                <a href="{{ route('dashboard') }}" class="icon-sm">
+                                    <i class="ti-reload mr-1"></i> Bersihkan Pencarian
+                                </a>
+                            </p>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
@@ -165,12 +167,13 @@
                                             <th> Tiba </th>
                                             <th> Transportasi </th>
                                             <th> Harga </th>
+                                            <th> Action </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if (request()->rute_awal == null && request()->rute_akhir == null && request()->transportation == null)
                                             <tr>
-                                                <td colspan="6" align="center">
+                                                <td colspan="7" align="center">
                                                     Cari Tiket Anda Disini
                                                 </td>
                                             </tr>
@@ -195,10 +198,15 @@
                                                     <td>
                                                         {{ formatRupiah($item->harga) }}
                                                     </td>
+                                                    <td>
+                                                        <a href="{{ route('rutes.show', $item->id) }}"
+                                                            class="btn btn-outline-linkedin btn-sm">
+                                                            <i class="ti-new-window"></i> Pesan
+                                                    </td>
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="6" align="center">
+                                                    <td colspan="7" align="center">
                                                         Tiket Tidak Ditemukan
                                                     </td>
                                                 </tr>

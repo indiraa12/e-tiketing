@@ -10,6 +10,7 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransportationController;
+use App\Models\Payment;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -38,6 +39,7 @@ Route::resource("/admin/pengguna", PenggunaController::class);
 Route::resource("/admin/type", TypeController::class);
 Route::resource("/admin/transportations", TransportationController::class);
 Route::resource("/admin/rutes", RuteController::class);
+Route::resource("/admin/payment", Payment::class);
 });
 
 Route::middleware('guest')->group(function () {

@@ -61,7 +61,10 @@ class RuteController extends Controller
      */
     public function show(Rute $rute)
     {
-        //
+        // return $rute = $rute->load('transportation.type');
+        return view('admin.rutes.show', [
+            'rute' => $rute->load('transportation.type'),
+        ]);
     }
 
     /**
