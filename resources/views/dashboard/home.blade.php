@@ -193,7 +193,7 @@
                                                         {{ $item->transportation->type->full_name }}
                                                     </td>
                                                     <td>
-                                                        {{ $item->harga }}
+                                                        {{ formatRupiah($item->harga) }}
                                                     </td>
                                                 </tr>
                                             @empty

@@ -15,16 +15,16 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $query = Rute::with('transportation');
-        // return $query->get();
         if ($request->filled('rute_awal') && $request->filled('rute_akhir') && $request->filled('transportation')) {
            $query->where('rute_awal',  $request->rute_awal)->where('rute_akhir', $request->rute_akhir)
             ->whereHas('transportation.type', function ($query) use ($request) {
             $query->where('nama_type', $request->transportation);
         });
         }
+        // $ruteAwal = Rute::distinct()->pluck('rute_awal')->toArray();
         $ruteAwal = Rute::pluck('rute_awal')->unique();
         $ruteAkhir = Rute::pluck('rute_akhir')->unique();
-        // return Type::latest()->get();
+        // return $ruteAkhir;
         return view('dashboard.home',[
             'ruteAwal' => $ruteAwal,
             'ruteAkhir' => $ruteAkhir,

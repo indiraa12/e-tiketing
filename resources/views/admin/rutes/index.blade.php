@@ -61,7 +61,7 @@
                                             <td>{{ $item['rute_awal'] }}</td>
                                             <td>{{ $item['rute_akhir'] }}</td>
                                             <td>{{ $item->transportation->format_kode }}</td>
-                                            <td>{{ $item['harga'] }}</td>
+                                            <td>{{ formatRupiah($item->harga) }}</td>
                                             <td>
                                                 <div class="d-inline-flex">
                                                     <a style="scale: .9" href="{{ route('rutes.edit', $item->id) }}"
