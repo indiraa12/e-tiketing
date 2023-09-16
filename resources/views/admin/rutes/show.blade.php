@@ -23,8 +23,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">Tanggal Berangkat</label>
-                                    <input type="date" value="{{ date('Y-m-d') }}" class="form-control"
-                                        id="tanggalBerangkat" placeholder="Tanggal Berangkat">
+                                    <input type="date" class="form-control" id="tanggalBerangkat"
+                                        placeholder="Tanggal Berangkat">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">Total Bayar</label>
@@ -41,7 +41,30 @@
                 <div class="col-md-6 grid-margin">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-title mb-3">Detail Tujuan</p>
+                            <h5 class="font-weight-bold mb-3">Detail | {{ auth()->user()->name }}</h5>
+                            <div class="table-responsive">
+                                <table class="table table-borderless table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th class="pl-0 pb-2 border-bottom">Tanggal Lahir</th>
+                                            <th class="border-bottom pb-2">Gender</th>
+                                            <th class="border-bottom pb-2">Phone</th>
+                                            <th class="border-bottom pb-2">Alamat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="pl-0">{{ auth()->user()->tgl_lahir }}</td>
+                                            <td class="text-muted">{{ auth()->user()->jenis_kelamin }}</td>
+                                            <td class="text-muted">{{ auth()->user()->telepon }}</td>
+                                            <td class="text-muted">{{ auth()->user()->alamat_penumpang }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="font-weight-bold mb-3">Detail Tujuan</h5>
                             <div class="table-responsive">
                                 <table class="table table-borderless table-sm">
                                     <thead>
@@ -64,7 +87,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p class="card-title mb-3">Detail Transportasi</p>
+                            <h5 class="font-weight-bold mb-3">Detail Transportasi</h5>
                             <div class="table-responsive">
                                 <table class="table table-borderless table-sm">
                                     <thead>
