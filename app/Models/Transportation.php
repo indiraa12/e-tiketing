@@ -9,9 +9,21 @@ class Transportation extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $appends = ['format_kode'];
+
+
+     public function getFormatKodeAttribute()
+    {
+        return "{$this->kode} - {$this->type->full_name}";
+    }
 
     public function type()
     {
         return $this->belongsTo(Type::class);
+    }
+
+    public function rute()
+    {
+        return $this->hasOne(Rute::class, 'transportation_id');
     }
 }

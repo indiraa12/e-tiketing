@@ -109,7 +109,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('rutes.index') }}">
                                 <i class="icon ti-map-alt menu-icon"></i>
                                 <span class="menu-title">Rute Perjalanan</span>
                             </a>

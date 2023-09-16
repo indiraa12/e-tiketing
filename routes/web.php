@@ -37,6 +37,7 @@ Route::resource("/admin/pengguna", PenggunaController::class);
 
 Route::resource("/admin/type", TypeController::class);
 Route::resource("/admin/transportations", TransportationController::class);
+Route::resource("/admin/rutes", RuteController::class);
 });
 
 Route::middleware('guest')->group(function () {

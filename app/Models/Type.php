@@ -20,7 +20,7 @@ class Type extends Model
         return "{$this->nama_type} - {$this->keterangan}";
     }
 
-    public function transportations()
+    public function transportation()
     {
         return $this->hasOne(Transportation::class, 'type_id');
     }
