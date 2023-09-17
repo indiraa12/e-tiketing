@@ -49,9 +49,13 @@ class UserPaymentController extends Controller
      * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function show(Payment $payment)
+    public function show(Payment $pesanan)
     {
-        //
+        // $pesanan = $pesanan->load(['penumpang', 'rute.transportation.type', 'user']);
+        // return $pesanan;
+        return view("admin.pemesanan.show",[
+            "pesanan" => $pesanan->load(['penumpang', 'rute.transportation.type', 'user']),
+        ]);
     }
 
     /**
