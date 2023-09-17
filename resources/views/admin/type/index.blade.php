@@ -44,13 +44,13 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             <th>Tipe Transportasi</th>
                                             <th>Kelas</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    @foreach ($type as $item)
+                                    @forelse ($type as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item['nama_type'] }}</td>
@@ -73,7 +73,11 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="4" class="text-center">Data Kosong</td>
+                                        </tr>
+                                    @endforelse
 
                                 </table>
                             </div>

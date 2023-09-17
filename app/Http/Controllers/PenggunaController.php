@@ -20,8 +20,7 @@ class PenggunaController extends Controller
                 ->where("role_id", 2)
                 ->get();
         } else {
-            $data_pengguna = User::all()
-                ->where("role_id", 2);
+            $data_pengguna = User::where("role_id", 2)->latest()->get();
         }
         return view("admin.pengguna.index", compact("data_pengguna"));
     }
@@ -108,7 +107,7 @@ class PenggunaController extends Controller
                 "max:30",
                 "unique:users,username," . $pengguna->id,
             ],
-            "password" => "required",
+            "password" => "nullable",
             "min:5",
             "mix:20",
             "name" => "required",

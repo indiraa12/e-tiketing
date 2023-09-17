@@ -76,9 +76,9 @@ class PaymentController extends Controller
         // check total bayar
         $hargaRute = Rute::find($request->rute_id);
         if($request->total_bayar < $hargaRute->harga){
-            return back()->with('error', 'Total Bayar Tidak Boleh Kurang Dari Harga Yang Di Tentukan');
+            return back()->with('error', 'Total Bayar Tidak Boleh Kurang Dari Harga Yang Sudah Di Tentukan');
         } else if($request->total_bayar > $hargaRute->harga){
-            return back()->with('error', 'Total Bayar Tidak Boleh Lebih Dari Harga Yang Di Tentukan');
+            return back()->with('error', 'Total Bayar Tidak Boleh Lebih Dari Harga Yang Sudah Di Tentukan');
         }
 
         Payment::create($data);

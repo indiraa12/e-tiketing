@@ -44,7 +44,7 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             <th>Tujuan</th>
                                             <th>Rute Awal</th>
                                             <th>Rute Ahir</th>
@@ -54,7 +54,7 @@
                                         </tr>
                                     </thead>
 
-                                    @foreach ($rutes as $item)
+                                    @forelse ($rutes as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item['tujuan'] }}</td>
@@ -80,7 +80,11 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" align="center">Data Kosong</td>
+                                        </tr>
+                                    @endforelse
 
                                 </table>
                             </div>
