@@ -131,6 +131,7 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+        return back()->with('success', 'Pembayaran Berhasil Dihapus');
     }
 }
