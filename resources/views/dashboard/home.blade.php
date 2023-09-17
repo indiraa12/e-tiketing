@@ -43,14 +43,16 @@
                             <div class="col-md-6 mb-4 stretch-card transparent">
                                 <div class="card card-tale">
                                     <div class="card-body">
-                                        <p class="mb-4">Today’s Bookings</p>
+                                        <p class="mb-4">Total User</p>
+                                        <p class="fs-30 mb-2">{{ $users }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-4 stretch-card transparent">
                                 <div class="card card-dark-blue">
                                     <div class="card-body">
-                                        <p class="mb-4">Total Bookings</p>
+                                        <p class="mb-4">Pendapatan Keseluruhan</p>
+                                        <h4 class="mb-2">{{ formatRupiah($pendapatan) }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -59,30 +61,32 @@
                             <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                                 <div class="card card-light-blue">
                                     <div class="card-body">
-                                        <p class="mb-4">Number of Meetings</p>
+                                        <p class="mb-4">Pendapatan Hari ini</p>
+                                        <h4 class="mb-2">{{ formatRupiah($pendapatanHariIni) }}</h4>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 stretch-card transparent">
                                 <div class="card card-light-danger">
                                     <div class="card-body">
-                                        <p class="mb-4">Number of Clients</p>
+                                        <p class="mb-4">Total Pemesanan</p>
+                                        <p class="fs-30 mb-2">{{ $totalPemesanan }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <p class="card-title">Order Details</p>
-
+                                <p class="card-title">Total Pemesanan</p>
+                                <p class="fs-30 mb-2">4006</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             @else
                 <!-- Halaman Penumpang -->
                 <div class="row">

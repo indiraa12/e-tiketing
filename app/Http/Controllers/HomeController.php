@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\Pemesanan;
 use App\Models\Rute;
 use App\Models\Transportation;
 use App\Models\Type;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +28,10 @@ class HomeController extends Controller
         $ruteAkhir = Rute::pluck('rute_akhir')->unique();
         // return $ruteAkhir;
         return view('dashboard.home',[
+            'users' => User::where('role_id', 2)->count(),
+            'pendapatan' => Payment::sum('total_bayar'),
+            'pendapatanHariIni' => Payment::whereDate('created_at', now())->sum('total_bayar'),
+            'totalPemesanan' => Payment::count(),
             'ruteAwal' => $ruteAwal,
             'ruteAkhir' => $ruteAkhir,
             'rutes' => $query->latest()->get(),

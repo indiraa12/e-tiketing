@@ -82,7 +82,7 @@ class PaymentController extends Controller
         }
 
         Payment::create($data);
-        return redirect()->route('pesanan.index')->with('success', 'Pembayaran Berhasil');
+        return redirect()->route('pemesanan.index')->with('success', 'Pembayaran Berhasil');
     }
 
     /**
