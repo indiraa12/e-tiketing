@@ -14,12 +14,11 @@ class UserPaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::with(['penumpang', 'rute', 'user'])->get();
+        $payments = Payment::with(['penumpang', 'rute', 'user'])->
+        where('penumpang_id', auth()->user()->id)->get();
         // return $payments;
         return view("pesanan.index",
-            [
-                "payments" => Payment::with(['penumpang', 'rute', 'user'])->latest()->get(),
-            ]
+            [ "payments" => Payment::with(['penumpang', 'rute', 'user'])->latest()->where('penumpang_id', auth()->user()->id)->get(), ]
         );
     }
 

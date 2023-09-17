@@ -61,14 +61,24 @@ class PaymentController extends Controller
         $data['jam_cekin'] = Carbon::parse($data['tanggal_berangkat'])->hour(6)->minute(0)->second(0);
         $data['jam_berangkat'] = Carbon::parse($data['tanggal_berangkat'])->hour(8)->minute(0)->second(0);
         $data['total_bayar'] = $request->total_bayar;
-        // return $data;
+
+        // check tanggal berangkat
         if ($data['tanggal_berangkat'] < date('Y-m-d')) {
             return back()->with('error', 'Tanggal Berangkat Tidak Boleh Kurang Dari Hari Ini');
         }
 
+        // check duplicate
         $checkDuplicate = Payment::where('penumpang_id', auth()->user()->id)->where('rute_id', $request->rute_id)->where('tanggal_berangkat', $request->tanggal_berangkat)->first();
         if($checkDuplicate){
             return back()->with('error', 'Anda Sudah Melakukan Pemesanan Pada Tanggal Tersebut');
+        }
+
+        // check total bayar
+        $hargaRute = Rute::find($request->rute_id);
+        if($request->total_bayar < $hargaRute->harga){
+            return back()->with('error', 'Total Bayar Tidak Boleh Kurang Dari Harga Yang Di Tentukan');
+        } else if($request->total_bayar > $hargaRute->harga){
+            return back()->with('error', 'Total Bayar Tidak Boleh Lebih Dari Harga Yang Di Tentukan');
         }
 
         Payment::create($data);
