@@ -6,10 +6,13 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BandaraController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransportationController;
+use App\Http\Controllers\UserPaymentController;
+use App\Http\Controllers\UserRuteController;
 use App\Models\Payment;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -32,6 +35,8 @@ Route::middleware('auth')->group(function() {
 Route::post("/logout", [LoginController::class, "logout"]);
 
 Route::get("/dashboard", [HomeController::class, "index"])->name('dashboard');
+Route::get("rutes/pesanan/{rute}", UserRuteController::class)->name('rutes.pesanan');
+Route::resource('pesanan', UserPaymentController::class);
 // Route::post("/dashboard", [HomeController::class, "search"]);
 
 Route::resource("/admin/pengguna", PenggunaController::class);
@@ -39,7 +44,7 @@ Route::resource("/admin/pengguna", PenggunaController::class);
 Route::resource("/admin/type", TypeController::class);
 Route::resource("/admin/transportations", TransportationController::class);
 Route::resource("/admin/rutes", RuteController::class);
-Route::resource("/admin/payment", Payment::class);
+Route::resource("/admin/payments", PaymentController::class);
 });
 
 Route::middleware('guest')->group(function () {

@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
-use App\Models\Rute;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class PaymentController extends Controller
+class UserPaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +16,7 @@ class PaymentController extends Controller
     {
         $payments = Payment::with(['penumpang', 'rute', 'user'])->get();
         // return $payments;
-        return view("payments.index",
+        return view("pesanan.index",
             [
                 "payments" => Payment::with(['penumpang', 'rute', 'user'])->latest()->get(),
             ]
@@ -45,34 +41,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $users = User::where('role_id', 1)->first();
-        $data = $request->validate([
-            'rute_id' => 'required|exists:rutes,id',
-            'tanggal_berangkat' => 'required',
-            'total_bayar' => 'required',
-        ]);
-        $data['penumpang_id'] = auth()->user()->id;
-        $data['user_id'] = $users->role_id;
-        $data['kode_pemesanan'] = 'CK-' . auth()->user()->id . rand(10000, 99999);
-        $data['tempat_pemesanan'] = 'Tiket Online';
-        $data['kode_kursi'] = 'K-' . rand(10, 99);
-        $data['tanggal_pemesanan'] = now();
-        $data['tanggal_berangkat'] = $request->tanggal_berangkat;
-        $data['jam_cekin'] = Carbon::parse($data['tanggal_berangkat'])->hour(6)->minute(0)->second(0);
-        $data['jam_berangkat'] = Carbon::parse($data['tanggal_berangkat'])->hour(8)->minute(0)->second(0);
-        $data['total_bayar'] = $request->total_bayar;
-
-        if ($data['tanggal_berangkat'] < now()) {
-            return redirect()->route('dashboard')->with('error', 'Tanggal Berangkat Tidak Boleh Kurang Dari Hari Ini');
-        }
-
-        $checkDuplicate = Payment::where('penumpang_id', auth()->user()->id)->where('rute_id', $request->rute_id)->where('tanggal_berangkat', $request->tanggal_berangkat)->first();
-        if($checkDuplicate){
-            return redirect()->route('dashboard')->with('error', 'Anda Sudah Melakukan Pemesanan Pada Tanggal Tersebut');
-        }
-
-        Payment::create($data);
-        return redirect()->route('dashboard')->with('success', 'Pembayaran Berhasil');
+        //
     }
 
     /**

@@ -144,7 +144,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('pesanan.index') }}">
                                 <i class="icon ti-shopping-cart-full menu-icon"></i>
                                 <span class="menu-title">Pesanan</span>
                             </a>

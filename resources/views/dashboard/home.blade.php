@@ -199,7 +199,7 @@
                                                         {{ formatRupiah($item->harga) }}
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('rutes.show', $item->id) }}"
+                                                        <a href="{{ route('rutes.pesanan', $item->id) }}"
                                                             class="btn btn-outline-linkedin btn-sm">
                                                             <i class="ti-new-window"></i> Pesan
                                                     </td>
