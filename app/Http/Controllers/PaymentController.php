@@ -20,7 +20,7 @@ class PaymentController extends Controller
     {
         $payments = Payment::with(['penumpang', 'rute', 'user'])->get();
         // return $payments;
-        return view("payments.index",
+        return view("admin.pemesanan.index",
             [
                 "payments" => Payment::with(['penumpang', 'rute', 'user'])->latest()->get(),
             ]
@@ -93,7 +93,11 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        $payment = $payment->load(['penumpang', 'rute.transportation.type', 'user']);
+        // return $payment;
+        return view("admin.pemesanan.show",[
+            "payment" => $payment->load(['penumpang', 'rute.transportation.type', 'user']),
+        ]);
     }
 
     /**
