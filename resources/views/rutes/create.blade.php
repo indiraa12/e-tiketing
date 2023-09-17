@@ -2,6 +2,11 @@
 @section('konten')
     <div class="main-panel">
         <div class="content-wrapper">
+            @if (session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="row">
                 <div class="col-md-6 grid-margin stretch-card">
                     <div class="card">
@@ -13,14 +18,10 @@
                             @foreach ($errors->all() as $item)
                                 {{ $item }}
                             @endforeach
-                            <form action="{{ route('payments.store') }}" class="forms-sample" method="post">
+                            <form onsubmit="return confirm('apakah anda yakin ingin membeli tiket?')"
+                                action="{{ route('payments.store') }}" class="forms-sample" method="post">
                                 @csrf
                                 <input type="hidden" name="rute_id" value="{{ $rute->id }}">
-                                {{-- <div class="form-group">
-                                    <label for="exampleInputEmail1">Tujuan</label>
-                                    <input type="text" name="tujuan" value="{{ $rute->tujuan }}" class="form-control"
-                                        id="tujuan" placeholder="Tujuan">
-                                </div> --}}
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">Tanggal Berangkat</label>
                                     <input type="date" value="{{ date('Y-m-d') }}" name="tanggal_berangkat"

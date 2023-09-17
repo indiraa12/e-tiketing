@@ -35,12 +35,11 @@ Route::middleware('auth')->group(function() {
 Route::post("/logout", [LoginController::class, "logout"]);
 
 Route::get("/dashboard", [HomeController::class, "index"])->name('dashboard');
-Route::get("rutes/pesanan/{rute}", UserRuteController::class)->name('rutes.pesanan');
 Route::resource('pesanan', UserPaymentController::class);
-// Route::post("/dashboard", [HomeController::class, "search"]);
+Route::get("rutes/pesanan/{rute}", UserRuteController::class)->name('rutes.pesanan');
+
 
 Route::resource("/admin/pengguna", PenggunaController::class);
-
 Route::resource("/admin/type", TypeController::class);
 Route::resource("/admin/transportations", TransportationController::class);
 Route::resource("/admin/rutes", RuteController::class);

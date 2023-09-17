@@ -42,39 +42,50 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
+                                            <th class="text-center">No</th>
                                             <th>Kode Pemesanan</th>
                                             <th>Nama</th>
                                             <th>Tujuan</th>
-                                            <th>Tanggal Berangkat</th>
-                                            <th>Jam Cekin</th>
-                                            <th>Jam Berangkat</th>
-                                            <th>Total Bayar</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th class="text-center">Tanggal Berangkat</th>
+                                            <th class="text-center">Jam Cekin</th>
+                                            <th class="text-center">Jam Berangkat</th>
+                                            <th class="text-center">Total Bayar</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
-                                    @foreach ($payments as $item)
+                                    @forelse ($payments as $item)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $item->kode_pemesanan }}</td>
                                             <td>{{ $item->penumpang->name }}</td>
                                             <td>{{ $item->rute->tujuan }}</td>
-                                            <td>{{ $item->tanggal_berangkat }}</td>
-                                            <td>{{ $item->jam_cekin }}</td>
-                                            <td>{{ $item->jam_berangkat }}</td>
-                                            <td>{{ formatRupiah($item->total_bayar) }}</td>
-                                            <td>
+                                            <td class="text-center">
+                                                {{ Carbon\Carbon::parse($item->tanggal_berangkat)->translatedFormat('l, d F Y') }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ Carbon\Carbon::parse($item->jam_cekin)->translatedFormat('H:i') }} WIB
+                                            </td>
+                                            <td class="text-center">
+                                                {{ Carbon\Carbon::parse($item->jam_berangkat)->translatedFormat('H:i') }}
+                                                WIB
+                                            </td>
+                                            <td class="text-center">{{ formatRupiah($item->total_bayar) }}</td>
+                                            <td class="text-center">
                                                 <label class="badge badge-success">Paid</label>
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{ route('pesanan.show', $item->id) }}"
                                                     class="btn btn-outline-linkedin btn-sm">
                                                     <i class="ti-new-window"></i>
                                                     Detail</a>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="10" class="text-center">Data Kosong</td>
+                                        </tr>
+                                    @endforelse
                                 </table>
                             </div>
                         </div>
