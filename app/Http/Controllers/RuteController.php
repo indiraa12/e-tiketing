@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bandara;
 use App\Models\Rute;
+use App\Models\Transportation;
 use Illuminate\Http\Request;
-use Whoops\Run;
 
 class RuteController extends Controller
 {
@@ -16,8 +15,9 @@ class RuteController extends Controller
      */
     public function index()
     {
-        $rute = Rute::all();
-        return view('admin.rute.rute', compact('rute'));
+        return view('admin.rutes.index', [
+            'rutes' => Rute::latest()->get(),
+        ]);
     }
 
     /**
@@ -27,8 +27,10 @@ class RuteController extends Controller
      */
     public function create()
     {
-        $data1 = Bandara::all();
-        return view('admin.rute.tambah', compact('data1'));
+        // return Transportation::latest()->get();
+        return view('admin.rutes.create', [
+            'transportations' => Transportation::latest()->get(),
+        ]);
     }
 
     /**
@@ -39,10 +41,16 @@ class RuteController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['bandara_id'] = $request->bandara_id;
+        $data = $request->validate([
+            'transportation_id' => 'required|exists:transportations,id',
+            'tujuan' => 'required',
+            'rute_awal' => 'required',
+            'rute_akhir' => 'required',
+            'harga' => 'required|numeric',
+        ]);
+        $data['transportation_id'] = $request->transportation_id;
         Rute::create($data);
-        return redirect('/admin/rute')->with('success', 'Tambah Data Sukses!!!');
+        return redirect()->route('rutes.index')->with('success', 'Rute berhasil ditambahkan');
     }
 
     /**
@@ -53,7 +61,10 @@ class RuteController extends Controller
      */
     public function show(Rute $rute)
     {
-        //
+        // return $rute = $rute->load('transportation.type');
+        return view('admin.rutes.show', [
+            'rute' => $rute->load('transportation.type'),
+        ]);
     }
 
     /**
@@ -64,7 +75,10 @@ class RuteController extends Controller
      */
     public function edit(Rute $rute)
     {
-        //
+        return view('admin.rutes.edit', [
+            'rute' => $rute,
+            'transportations' => Transportation::latest()->get(),
+        ]);
     }
 
     /**
@@ -76,7 +90,19 @@ class RuteController extends Controller
      */
     public function update(Request $request, Rute $rute)
     {
-        //
+        $data = $request->validate([
+            'transportation_id' => 'required|exists:transportations,id',
+            'tujuan' => 'required',
+            'rute_awal' => 'required',
+            'rute_akhir' => 'required',
+            'harga' => 'required|numeric',
+        ]);
+        $data['transportation_id'] = $request->transportation_id;
+        if ($rute->payment()->count() > 0) {
+            return back()->with('error', 'Data tidak bisa diupdate karena sudah dipakai');
+        }
+        $rute->update($data);
+        return redirect()->route('rutes.index')->with('success', 'Rute berhasil diupdate');
     }
 
     /**
@@ -87,6 +113,10 @@ class RuteController extends Controller
      */
     public function destroy(Rute $rute)
     {
-        //
+        if ($rute->payment()->count() > 0) {
+            return back()->with('error', 'Data tidak bisa dihapus karena sudah dipakai');
+        }
+        $rute->delete();
+        return redirect()->route('rutes.index')->with('success', 'Rute berhasil dihapus');
     }
 }

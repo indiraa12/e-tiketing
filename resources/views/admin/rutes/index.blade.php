@@ -6,8 +6,8 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title text-center">Type Transportasi</h4>
-                            <a href="{{ route('type.create') }}" class="btn btn-primary btn-sm">Tambah Tipe </a>
+                            <h4 class="card-title text-center">Rute Perjalanan</h4>
+                            <a href="{{ route('rutes.create') }}" class="btn btn-primary btn-sm">Tambah Rute</a>
                             <div class="mb-3"></div>
 
                             <div class="row">
@@ -28,24 +28,31 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tipe Transportasi</th>
-                                            <th>Kelas</th>
+                                            <th>Tujuan</th>
+                                            <th>Rute Awal</th>
+                                            <th>Rute Ahir</th>
+                                            <th>Kode Transportasi</th>
+                                            <th>Harga</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    @forelse ($type as $item)
+
+                                    @forelse ($rutes as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item['nama_type'] }}</td>
-                                            <td>{{ $item['keterangan'] }}</td>
+                                            <td>{{ $item['tujuan'] }}</td>
+                                            <td>{{ $item['rute_awal'] }}</td>
+                                            <td>{{ $item['rute_akhir'] }}</td>
+                                            <td>{{ $item->transportation->format_kode }}</td>
+                                            <td>{{ formatRupiah($item->harga) }}</td>
                                             <td>
                                                 <div class="d-inline-flex">
-                                                    <a style="scale: .9" href="{{ route('type.edit', $item->id) }}"
+                                                    <a style="scale: .9" href="{{ route('rutes.edit', $item->id) }}"
                                                         class="btn btn-warning btn-icon btn-rounded d-flex">
                                                         <i class="ti-pencil-alt m-auto"></i>
                                                     </a>
                                                     <form onsubmit="return confirm('apakah anda yakin?')"
-                                                        action="{{ route('type.destroy', $item->id) }}" method="POST">
+                                                        action="{{ route('rutes.destroy', $item->id) }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button style="scale: .9" type="submit"
@@ -58,7 +65,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">Data Kosong</td>
+                                            <td colspan="7" align="center">Data Kosong</td>
                                         </tr>
                                     @endforelse
 

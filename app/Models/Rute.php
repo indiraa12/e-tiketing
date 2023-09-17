@@ -2,26 +2,29 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\HomeController;
-use App\Models\Bandara;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Rute extends Model
 {
     use HasFactory;
-    protected $table = 'rutes';
-    protected $fillable = [
-        'tujuan', 'rute_awal', 'rute_akhir', 'harga', 'bandara_id'
-    ];
+    protected $guarded = [];
+    // protected $appends = ['format_kode'];
 
-    public function Bandara()
+
+    // public function getFormatKodeAttribute()
+    // {
+    //     return "RTE-" . str_pad($this->id, 3, '0', STR_PAD_LEFT);
+    // }
+
+
+    public function transportation()
     {
-        return $this->belongsTo(Bandara::class, 'bandara_id');
+        return $this->belongsTo(Transportation::class);
     }
 
-    public function Rute()
+    public function payment()
     {
-        return $this->hasOne(HomeController::class);
+        return $this->hasMany(Payment::class);
     }
 }

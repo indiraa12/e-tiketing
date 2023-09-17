@@ -6,14 +6,15 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title text-center">Type Transportasi</h4>
-                            <a href="{{ route('type.create') }}" class="btn btn-primary btn-sm">Tambah Tipe </a>
+                            <h4 class="card-title text-center">Data Transportasi</h4>
+                            <a href="{{ route('transportations.create') }}" class="btn btn-primary btn-sm">Tambah
+                                Transportasi</a>
                             <div class="mb-3"></div>
 
                             <div class="row">
                                 <div class="input-group">
                                     <div class="col-sm-4">
-                                        <form action="/admin/type" method="GET">
+                                        <form action="" method="GET">
                                             <input type="search" class="form-control" name="cari"
                                                 placeholder="Cari Apaa..">
                                     </div>
@@ -28,24 +29,30 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tipe Transportasi</th>
-                                            <th>Kelas</th>
+                                            <th>Kode Transportasi</th>
+                                            <th>Type Transportasi</th>
+                                            <th>Jumlah Kursi</th>
+                                            <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    @forelse ($type as $item)
+                                    @forelse ($data_transportation as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item['nama_type'] }}</td>
-                                            <td>{{ $item['keterangan'] }}</td>
+                                            <td>{{ $item->kode }}</td>
+                                            <td class="text-capitalize">{{ $item->type->full_name }}</td>
+                                            <td>{{ $item->jumlah_kursi }}</td>
+                                            <td>{{ $item->keterangan ?? '-' }}</td>
                                             <td>
                                                 <div class="d-inline-flex">
-                                                    <a style="scale: .9" href="{{ route('type.edit', $item->id) }}"
+                                                    <a style="scale: .9"
+                                                        href="{{ route('transportations.edit', $item->id) }}"
                                                         class="btn btn-warning btn-icon btn-rounded d-flex">
                                                         <i class="ti-pencil-alt m-auto"></i>
                                                     </a>
                                                     <form onsubmit="return confirm('apakah anda yakin?')"
-                                                        action="{{ route('type.destroy', $item->id) }}" method="POST">
+                                                        action="{{ route('transportations.destroy', $item->id) }}"
+                                                        method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button style="scale: .9" type="submit"
@@ -58,7 +65,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">Data Kosong</td>
+                                            <td colspan="6" class="text-center">Data Kosong</td>
                                         </tr>
                                     @endforelse
 

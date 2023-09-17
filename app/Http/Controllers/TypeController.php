@@ -18,7 +18,7 @@ class TypeController extends Controller
             $type = Type::where("nama_type", "LIKE", "%" . $request->cari . "%")
                 ->get();
         } else {
-            $type = Type::all();
+            $type = Type::latest()->get();
         }
         return view('admin/type/index', compact('type'));
     }
@@ -78,8 +78,11 @@ class TypeController extends Controller
     {
         $data = $request->all();
         $data['id'] = $request->id;
+        if ($type->transportation()->count() > 0) {
+            return back()->with("error", "Tidak Bisa Di Edit Karena Data Sudah Di Pakai!!!");
+        }
         $type->update($data);
-        return redirect('/admin/type')->with('berhasil', 'Edit Data Sukses!!!');
+        return redirect('/admin/type')->with('success', 'Edit Data Sukses!!!');
     }
 
     /**
@@ -90,10 +93,10 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
+        if ($type->transportation()->count() > 0) {
+            return back()->with("error", "Tidak Bisa Di Hapus Karena Data Sudah Di Pakai!!!");
+        }
         $type->delete();
-        return redirect("/admin/type")->with(
-            "hapus",
-            "Hapus Data Sukses!!!"
-        );
+        return redirect("/admin/type")->with("success", "Hapus Data Sukses!!!");
     }
 }

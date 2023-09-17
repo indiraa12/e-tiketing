@@ -20,8 +20,7 @@ class PenggunaController extends Controller
                 ->where("role_id", 2)
                 ->get();
         } else {
-            $data_pengguna = User::all()
-                ->where("role_id", 2);
+            $data_pengguna = User::where("role_id", 2)->latest()->get();
         }
         return view("admin.pengguna.index", compact("data_pengguna"));
     }
@@ -70,35 +69,16 @@ class PenggunaController extends Controller
         );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $pengguna)
     {
-        return view("admin.pengguna.edit", compact("pengguna"));
+        // return view("admin.pengguna.edit", compact("pengguna"));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $pengguna)
     {
         return view("admin.pengguna.edit", compact("pengguna"));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, User $pengguna)
     {
         $request->validate([
@@ -108,7 +88,7 @@ class PenggunaController extends Controller
                 "max:30",
                 "unique:users,username," . $pengguna->id,
             ],
-            "password" => "required",
+            "password" => "nullable",
             "min:5",
             "mix:20",
             "name" => "required",
@@ -124,24 +104,12 @@ class PenggunaController extends Controller
             unset($data["password"]);
         }
         $pengguna->update($data);
-        return redirect("/admin/pengguna")->with(
-            "berhasil",
-            "Edit Data Sukses!!!"
-        );
+        return redirect("/admin/pengguna")->with("success", "Update Data Sukses!!!");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(User $pengguna)
     {
         $pengguna->delete();
-        return redirect("/admin/pengguna")->with(
-            "hapus",
-            "Hapus Data Sukses!!!"
-        );
+        return redirect("/admin/pengguna")->with("success", "Hapus Data Sukses!!!");
     }
 }

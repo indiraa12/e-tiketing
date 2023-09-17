@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rutes', function (Blueprint $table) {
+        Schema::create('transportations', function (Blueprint $table) {
             $table->id();
-            $table->string('tujuan');
-            $table->string('rute_awal');
-            $table->string('rute_akhir');
-            $table->string('harga');
-            $table->foreignId('bandara_id')->constrained('bandara')->onDelete('cascade');
+            $table->foreignId('type_id')->constrained('types')->onDelete('cascade');
+            $table->string('kode');
+            $table->integer('jumlah_kursi');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rutes');
+        Schema::dropIfExists('transportations');
     }
 };
