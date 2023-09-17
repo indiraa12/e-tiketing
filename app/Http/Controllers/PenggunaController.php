@@ -69,35 +69,16 @@ class PenggunaController extends Controller
         );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $pengguna)
     {
         // return view("admin.pengguna.edit", compact("pengguna"));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $pengguna)
     {
         return view("admin.pengguna.edit", compact("pengguna"));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, User $pengguna)
     {
         $request->validate([
@@ -123,24 +104,12 @@ class PenggunaController extends Controller
             unset($data["password"]);
         }
         $pengguna->update($data);
-        return redirect("/admin/pengguna")->with(
-            "berhasil",
-            "Edit Data Sukses!!!"
-        );
+        return redirect("/admin/pengguna")->with("success", "Update Data Sukses!!!");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(User $pengguna)
     {
         $pengguna->delete();
-        return redirect("/admin/pengguna")->with(
-            "hapus",
-            "Hapus Data Sukses!!!"
-        );
+        return redirect("/admin/pengguna")->with("success", "Hapus Data Sukses!!!");
     }
 }

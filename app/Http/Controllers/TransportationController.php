@@ -92,6 +92,9 @@ class TransportationController extends Controller
         ]);
         $data['type_id'] = $request->type_id;
         $data['kode'] = $transportation->kode;
+        if($transportation->rute()->count() > 0) {
+            return back()->with("error", "Tidak Bisa Di Edit Karena Data Sudah Di Pakai!!!");
+        }
         $transportation->update($data);
         return redirect()->route("transportations.index")->with("success", "Update Data Sukses!!!");
     }
@@ -104,7 +107,10 @@ class TransportationController extends Controller
      */
     public function destroy(Transportation $transportation)
     {
+        if($transportation->rute()->count() > 0) {
+            return back()->with("error", "Tidak Bisa Di Hapus Karena Data Sudah Di Pakai!!!");
+        }
         $transportation->delete();
-        return redirect()->route("transportations.index")->with("success", "Hapus Data Sukses!!!");
+        return back()->with("success", "Hapus Data Sukses!!!");
     }
 }

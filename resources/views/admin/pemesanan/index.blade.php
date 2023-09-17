@@ -7,24 +7,6 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title" align="center">Data Pemesanan</h4>
-                            @if (session()->has('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-                            @if (session()->has('berhasil'))
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    {{ session('berhasil') }}
-                                </div>
-                            @endif
-
-                            @if (session()->has('hapus'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('hapus') }}
-                                </div>
-                            @endif
-
                             <div class="row">
                                 <div class="input-group">
                                     <div class="col-sm-4">

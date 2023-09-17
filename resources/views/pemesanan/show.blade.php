@@ -12,7 +12,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Detail Pemesanan | <span
-                                    class="font-weight-normal text-muted">{{ $payment->penumpang->name }}</span></h4>
+                                    class="font-weight-normal text-muted">{{ $pesanan->penumpang->name }}</span></h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <address class="text-primary">
@@ -20,25 +20,25 @@
                                             Kode Pemesanan
                                         </p>
                                         <p class="mb-2">
-                                            {{ $payment->kode_pemesanan }}
+                                            {{ $pesanan->kode_pemesanan }}
                                         </p>
                                         <p class="font-weight-bold">
                                             Tempat Pemesanan
                                         </p>
                                         <p class="mb-2">
-                                            {{ $payment->tempat_pemesanan }}
+                                            {{ $pesanan->tempat_pemesanan }}
                                         </p>
                                         <p class="font-weight-bold">
                                             Kode Kursi
                                         </p>
                                         <p class="mb-2">
-                                            {{ $payment->kode_kursi }}
+                                            {{ $pesanan->kode_kursi }}
                                         </p>
                                         <p class="font-weight-bold">
                                             Dibuat Oleh
                                         </p>
                                         <p>
-                                            {{ $payment->user->name }}
+                                            {{ $pesanan->user->name }}
                                         </p>
                                     </address>
                                 </div>
@@ -48,31 +48,31 @@
                                             Tanggal Pemesanan
                                         </p>
                                         <p class="mb-2">
-                                            {{ Carbon\Carbon::parse($payment->tanggal_pemesanan)->translatedFormat('d/m/y') }}
+                                            {{ Carbon\Carbon::parse($pesanan->tanggal_pemesanan)->translatedFormat('d/m/y') }}
                                         </p>
                                         <p class="font-weight-bold">
                                             Tanggal Berangkat
                                         </p>
                                         <p class="mb-2">
-                                            {{ Carbon\Carbon::parse($payment->tanggal_berangkat)->translatedFormat('l, d F Y') }}
+                                            {{ Carbon\Carbon::parse($pesanan->tanggal_berangkat)->translatedFormat('l, d F Y') }}
                                         </p>
                                         <p class="font-weight-bold">
                                             Jam Cekin
                                         </p>
                                         <p class="mb-2">
-                                            {{ Carbon\Carbon::parse($payment->jam_cekin)->translatedFormat('H:i') }}
+                                            {{ Carbon\Carbon::parse($pesanan->jam_cekin)->translatedFormat('H:i') }}
                                             WIB </p>
                                         <p class="font-weight-bold">
                                             Jam Berangkat
                                         </p>
                                         <p>
-                                            {{ Carbon\Carbon::parse($payment->jam_berangkat)->translatedFormat('H:i') }}
+                                            {{ Carbon\Carbon::parse($pesanan->jam_berangkat)->translatedFormat('H:i') }}
                                             WIB </p>
                                     </address>
                                 </div>
                             </div>
                             <div class="card-footer text-center">
-                                Total Bayar : <b>{{ formatRupiah($payment->total_bayar) }} ✅</b>
+                                Total Bayar : <b>{{ formatRupiah($pesanan->total_bayar) }} ✅</b>
                             </div>
                         </div>
                     </div>
@@ -88,19 +88,19 @@
                                             Name
                                         </p>
                                         <p class="mb-2">
-                                            {{ $payment->penumpang->name }}
+                                            {{ $pesanan->penumpang->name }}
                                         </p>
                                         <p class="font-weight-bold">
                                             Alamat
                                         </p>
                                         <p class="mb-2">
-                                            {{ $payment->penumpang->alamat_penumpang }}
+                                            {{ $pesanan->penumpang->alamat_penumpang }}
                                         </p>
                                         <p class="font-weight-bold">
                                             Jenis Kelamin
                                         </p>
                                         <p>
-                                            {{ $payment->penumpang->jenis_kelamin }}
+                                            {{ $pesanan->penumpang->jenis_kelamin }}
                                         </p>
                                     </address>
                                 </div>
@@ -110,19 +110,19 @@
                                             Username
                                         </p>
                                         <p class="mb-2">
-                                            {{ $payment->penumpang->username }}
+                                            {{ $pesanan->penumpang->username }}
                                         </p>
                                         <p class="font-weight-bold">
                                             Phone
                                         </p>
                                         <p class="mb-2">
-                                            {{ $payment->penumpang->telepon }}
+                                            {{ $pesanan->penumpang->telepon }}
                                         </p>
                                         <p class="font-weight-bold">
                                             Tanggal Lahir
                                         </p>
                                         <p>
-                                            {{ $payment->penumpang->tgl_lahir }}
+                                            {{ $pesanan->penumpang->tgl_lahir }}
                                         </p>
                                     </address>
                                 </div>
@@ -142,10 +142,10 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="pl-0 text-center">{{ $payment->rute->tujuan }}</td>
-                                            <td class="text-muted text-center">{{ $payment->rute->rute_awal }}</td>
-                                            <td class="text-muted text-center">{{ $payment->rute->rute_akhir }}</td>
-                                            <td class="text-muted text-center">{{ formatRupiah($payment->rute->harga) }}
+                                            <td class="pl-0 text-center">{{ $pesanan->rute->tujuan }}</td>
+                                            <td class="text-muted text-center">{{ $pesanan->rute->rute_awal }}</td>
+                                            <td class="text-muted text-center">{{ $pesanan->rute->rute_akhir }}</td>
+                                            <td class="text-muted text-center">{{ formatRupiah($pesanan->rute->harga) }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -166,14 +166,14 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="pl-0 text-center">{{ $payment->rute->transportation->kode }}</td>
+                                            <td class="pl-0 text-center">{{ $pesanan->rute->transportation->kode }}</td>
                                             <td class="text-muted text-center">
-                                                {{ $payment->rute->transportation->jumlah_kursi }}</td>
+                                                {{ $pesanan->rute->transportation->jumlah_kursi }}</td>
                                             <td class="text-muted text-center">
-                                                {{ $payment->rute->transportation->type->full_name }}
+                                                {{ $pesanan->rute->transportation->type->full_name }}
                                             </td>
                                             <td class="text-muted text-center">
-                                                {{ $payment->rute->transportation->keterangan }}
+                                                {{ $pesanan->rute->transportation->keterangan }}
                                             </td>
                                         </tr>
                                     </tbody>

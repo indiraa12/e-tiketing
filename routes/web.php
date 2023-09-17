@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function() {
 Route::post("/logout", [LoginController::class, "logout"]);
 
 Route::get("/dashboard", [HomeController::class, "index"])->name('dashboard');
-Route::resource('pesanan', UserPaymentController::class);
+Route::resource('pemesanan', UserPaymentController::class);
 Route::get("rutes/pesanan/{rute}", UserRuteController::class)->name('rutes.pesanan');
 
 

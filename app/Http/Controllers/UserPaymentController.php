@@ -17,78 +17,18 @@ class UserPaymentController extends Controller
         $payments = Payment::with(['penumpang', 'rute', 'user'])->
         where('penumpang_id', auth()->user()->id)->get();
         // return $payments;
-        return view("pesanan.index",
+        return view("pemesanan.index",
             [ "payments" => Payment::with(['penumpang', 'rute', 'user'])->latest()->where('penumpang_id', auth()->user()->id)->get(), ]
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Payment $pesanan)
+    public function show(Payment $pemesanan)
     {
         // $pesanan = $pesanan->load(['penumpang', 'rute.transportation.type', 'user']);
         // return $pesanan;
-        return view("admin.pemesanan.show",[
-            "pesanan" => $pesanan->load(['penumpang', 'rute.transportation.type', 'user']),
+        return view("pemesanan.show",[
+            "pesanan" => $pemesanan->load(['penumpang', 'rute.transportation.type', 'user']),
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Payment $payment)
-    {
-        //
-    }
 }

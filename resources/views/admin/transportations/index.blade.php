@@ -7,23 +7,6 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title text-center">Data Transportasi</h4>
-                            @if (session()->has('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-                            @if (session()->has('berhasil'))
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    {{ session('berhasil') }}
-                                </div>
-                            @endif
-
-                            @if (session()->has('hapus'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('hapus') }}
-                                </div>
-                            @endif
                             <a href="{{ route('transportations.create') }}" class="btn btn-primary btn-sm">Tambah
                                 Transportasi</a>
                             <div class="mb-3"></div>

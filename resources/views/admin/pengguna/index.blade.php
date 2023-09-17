@@ -9,24 +9,6 @@
                             <h4 class="card-title" align="center">Data Pengguna</h4>
                             <a href="{{ route('pengguna.create') }}" class="btn btn-primary btn-sm">Tambah Pengguna </a>
                             <div class="mb-3"></div>
-                            @if (session()->has('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-                            @if (session()->has('berhasil'))
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    {{ session('berhasil') }}
-                                </div>
-                            @endif
-
-                            @if (session()->has('hapus'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('hapus') }}
-                                </div>
-                            @endif
-
                             <div class="row">
                                 <div class="input-group">
                                     <div class="col-sm-4">

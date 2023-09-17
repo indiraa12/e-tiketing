@@ -22,4 +22,9 @@ class Rute extends Model
     {
         return $this->belongsTo(Transportation::class);
     }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

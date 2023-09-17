@@ -98,6 +98,9 @@ class RuteController extends Controller
             'harga' => 'required|numeric',
         ]);
         $data['transportation_id'] = $request->transportation_id;
+        if ($rute->payment()->count() > 0) {
+            return back()->with('error', 'Data tidak bisa diupdate karena sudah dipakai');
+        }
         $rute->update($data);
         return redirect()->route('rutes.index')->with('success', 'Rute berhasil diupdate');
     }
@@ -110,6 +113,9 @@ class RuteController extends Controller
      */
     public function destroy(Rute $rute)
     {
+        if ($rute->payment()->count() > 0) {
+            return back()->with('error', 'Data tidak bisa dihapus karena sudah dipakai');
+        }
         $rute->delete();
         return redirect()->route('rutes.index')->with('success', 'Rute berhasil dihapus');
     }
